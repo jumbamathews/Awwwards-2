@@ -28,3 +28,24 @@ class ProfileTestClass(TestCase):
         profile.update_bio('updated user-bio')
         self.updated_profile = UserProfile.objects.get(id=1)
         self.assertEqual(self.updated_profile.bio,'updated user-bio')
+
+
+class ProjectTestClass(TestCase):
+    def setUp(self):
+        self.new_user = User.objects.create_user(username='user',password='user-password')
+        self.new_profile = UserProfile(user=self.new_user)
+        self.new_profile.save()
+        self.new_project = Project(id=1,landing_page='photos/photo',project_title='Test Project',project_description='Test Description',user=self.new_user,live_site='http://livesite.com')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_profile,UserProfile))
+
+    def test_save_project(self):
+        self.new_project.save_project()
+        projects = Project.objects.all()
+        self.assertTrue(len(projects) > 0)
+
+    def test_delete_project(self):
+        self.new_project.delete_project()
+        projects = Project.objects.all()
+        self.assertTrue(len(projects) == 0)
