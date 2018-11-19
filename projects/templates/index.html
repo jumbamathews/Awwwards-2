@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+
+  <!-- Best Project is displayed here -->
+
+  {% if best_project %}
+  <div class="best-project" style="background:url('{{best_project.landing_page.url}}')">
+    <img src="http://joshuapekera.github.io/awwwards-retina-ribbons/img/ribbon-white.png" alt="">
+    <div class="progress-circle content" data-progress='{{best_project.content}}'></div>
+    <div class="progress-circle design" data-progress='{{best_project.design}}'></div>
+    <div class="progress-circle usability" data-progress='{{best_project.usability}}'></div>
+  </div>
+  <div class="best-project-text">
+    <h3 class="text-center">{{best_project.project_title}}</h3>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <a href="{% url 'project' best_project.pk %}" class="btn">See More</a>
+      </div>
+      <div class="col-md-4">
+        <a target="_blank" href="{{best_project.live_site}}" class="btn">Visit Site</a>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <p class="text-center">By {{best_project.user.username}} with {{best_rating}}</p>
+  </div>
+  {% endif %}
+
+
+
+</div>
+{% endblock %}
