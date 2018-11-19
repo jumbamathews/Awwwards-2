@@ -29,6 +29,30 @@
   {% endif %}
 
 
+  <!-- Other Projects are displayed here -->
+  <h3 class="text-center header">Other Projects</h3>
+  <hr class="text-muted">
+  <div class="projects row">
+    {% for project in projects %}
+    <div class="other-projects col-md-3">
+      <img class="landing-page" src="{{project.landing_page.url}}" alt="">
+      <div class="project-text">
+        <h3 class="text-center">{{project.project_title}}</h3>
+        <div class="d-flex justify-content-between">
+          <a href="{% url 'project' project.pk %}" class="btn">See More</a>
+          <a target="_blank" href="{{project.live_site}}" class="btn">Visit Site</a>
+        </div>
+        <ul class="d-flex justify-content-between">
+          <li>Design: {{project.design}}</li>
+          <li>Usability: {{project.usability}}</li>
+          <li>Content: {{project.content}}</li>
+        </ul>
+        <p class="text-center">By: <span>{{project.user.username}}</span></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
 
 </div>
 {% endblock %}
