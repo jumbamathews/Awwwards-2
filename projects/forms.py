@@ -13,3 +13,9 @@ class VoteForm(ModelForm):
     class Meta:
         model = Project
         fields = ('design','usability','content')
+
+
+class ProfileEditForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('profile_pic','bio')
