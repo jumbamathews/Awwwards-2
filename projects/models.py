@@ -13,6 +13,16 @@ class UserProfile(models.Model):
     linkedIn =  URLOrRelativeURLField()
     projects = models.ForeignKey('Project',on_delete=models.CASCADE,null=True)
 
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
+    def update_bio(self,bio):
+        self.bio = bio
+        self.save()
+
     def __str__(self):
         return self.user.username
 
@@ -28,6 +38,11 @@ class Project(models.Model):
     content = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
     vote_submissions = models.IntegerField(default=0)
 
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
 
     def __str__(self):
         return self.project_title
